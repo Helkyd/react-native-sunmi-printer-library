@@ -99,4 +99,10 @@ dependencies {
 
   // https://mvnrepository.com/artifact/com.sunmi/printerlibrary
   implementation "com.sunmi:printerlibrary:1.0.22"
+
+  //Sunmi PAYMENTS
+  implementation(files("libs/PayLib-release-2.0.17.aar"))
+
+
+
 }

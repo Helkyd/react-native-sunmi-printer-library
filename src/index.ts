@@ -8,6 +8,7 @@ import { NativeModules, Platform } from 'react-native'
  * Native Method for Printer
  */
 interface SunmiPrinterLibrary {
+  startEMV: () => Promise<boolean>
   connect: () => Promise<boolean>
   disconnect: () => Promise<void>
   printerInit: () => Promise<boolean>
@@ -149,6 +150,12 @@ export type PrinterInfo = NativePrinterInfo & {
 export type PrintImageType = 'binary' | 'grayscale'
 export type BarType = 'line' | 'double' | 'dots' | 'wave' | 'plus' | 'star'
 
+//SUNMI PAYMENTS
+const startEMV = Platform.select<() => Promise<boolean>>({
+  android: () => sunmiPrinterLibrary.startEMV(),
+  default: () => Promise.reject(OS_DOES_NOT_SUPPORT),
+})
+
 /**
  * connect printer
  *
@@ -174,6 +181,16 @@ const printerInit = Platform.select<() => Promise<boolean>>({
   default: () => Promise.reject(OS_DOES_NOT_SUPPORT),
 })
 
+export const startemvu = async () => {
+  try {
+    console.log('CALLE startemvu.... will now call startEMV ')
+    await startEMV()
+    return true
+
+  } catch (error) {
+    return Promise.reject('startEMV falhou... ' + error.message)
+  }
+}
 /**
  * prepare
  *

@@ -20,6 +20,7 @@ import { Buffer } from 'buffer'
 
 type Props = Record<string, never>
 type ComponentProps = {
+  onPressCheckCard: () => void
   onPressPrepare: () => void
   onPressPrintSelfChecking: () => void
   onPressPrintText: () => void
@@ -35,6 +36,7 @@ type ComponentProps = {
 }
 
 const Component: React.FC<ComponentProps> = ({
+  onPressCheckCard,
   onPressPrepare,
   onPressPrintSelfChecking,
   onPressPrintText,
@@ -79,6 +81,7 @@ const Component: React.FC<ComponentProps> = ({
             text="print text with transaction"
             onPress={onPressTransaction}
           />
+          <Button text="Check CARD" onPress={onPressCheckCard} />
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -87,6 +90,18 @@ const Component: React.FC<ComponentProps> = ({
 
 const Container: React.FC<Props> = () => {
   const toast = useToast()
+
+  const onPressCheckCard = useCallback(async () => {
+    try {
+      console.log('Vai chamar o startEMV')
+      await SunmiPrinterLibrary.startemvu()
+      toast.show('EMV STARTED')
+    } catch (error) {
+      console.warn(error)
+      toast.show(error)
+    }
+
+  }, [toast])
 
   const onPressPrepare = useCallback(async () => {
     try {
@@ -466,6 +481,7 @@ const Container: React.FC<Props> = () => {
   return (
     <Component
       {...{
+        onPressCheckCard,
         onPressPrepare,
         onPressPrintSelfChecking,
         onPressPrintText,
