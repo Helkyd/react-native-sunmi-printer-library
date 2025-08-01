@@ -1,5 +1,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+  <uses-permission android:name="com.sunmi.perm.MSR" />
+  <uses-permission android:name="com.sunmi.perm.ICC" />
+  <uses-permission android:name="com.sunmi.perm.PINPAD" />
+  <uses-permission android:name="com.sunmi.perm.SECURITY" />
+  <uses-permission android:name="com.sunmi.perm.CONTACTLESS_CARD" />
+
     <queries>
         <package android:name="woyou.aidlservice.jiuiv5"/>
     </queries>
+
 </manifest>

@@ -115,8 +115,10 @@ class SunmiPrinterLibraryModule(reactContext: ReactApplicationContext) :
 
   private fun checkCard(cardType: Int) {
     try {
+      Log.d("dd--","EMVOpvt Abort Transaction")
       mEMVOptV2?.abortTransactProcess()
       mEMVOptV2?.initEmvProcess()
+      Log.d("dd--","EMVOpvt InitEMV Process Done...")
 
       mReadCardOptV2?.checkCard(cardType, mCheckCardCallback, 60)
     } catch (e: Exception) {
