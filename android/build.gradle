@@ -69,6 +69,11 @@ android {
 
   lintOptions {
     disable "GradleCompatible"
+    checkReleaseBuilds false
+  }
+
+  packingOptions {
+    pickFirst '**/*.aar'
   }
 
   def java_version = JavaVersion.VERSION_17
@@ -102,6 +107,8 @@ dependencies {
 
   //Sunmi PAYMENTS
   implementation(files("libs/PayLib-release-2.0.17.aar"))
+  //implementation(files("libs/classes.jar"))
+  //implementation fileTree(include: ['*.jar'], dir: 'libs')
 
 
 

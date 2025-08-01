@@ -7,7 +7,7 @@ import {
   Text,
   DeviceEventEmitter,
 } from 'react-native'
-import * as SunmiPrinterLibrary from '@mitsuharu/react-native-sunmi-printer-library'
+import * as SunmiPrinterLibrary from '@helkyd/react-native-sunmi-printer-library'
 import { Button } from './components/Button'
 import { useToast } from 'react-native-toast-notifications'
 import {
